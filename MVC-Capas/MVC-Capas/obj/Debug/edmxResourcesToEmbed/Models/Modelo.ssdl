@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ModeloEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cuenta">
+    <Key>
+      <PropertyRef Name="numero" />
+    </Key>
+    <Property Name="numero" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cedula" Type="varchar" MaxLength="11" />
+    <Property Name="tipo" Type="varchar" MaxLength="30" />
+    <Property Name="saldo" Type="int" />
+    <Property Name="cuentaDefault" Type="bit" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="cedula" />
+    </Key>
+    <Property Name="nombre" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="apellido1" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="apellido2" Type="varchar" MaxLength="20" />
+    <Property Name="cedula" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="id" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <Association Name="FK__Cuenta__cedula__46E78A0C">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+    <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="cedula" />
+      </Principal>
+      <Dependent Role="Cuenta">
+        <PropertyRef Name="cedula" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModeloEntitiesStoreContainer">
+    <EntitySet Name="Cuenta" EntityType="Self.Cuenta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Cuenta__cedula__46E78A0C" Association="Self.FK__Cuenta__cedula__46E78A0C">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Cuenta" EntitySet="Cuenta" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
