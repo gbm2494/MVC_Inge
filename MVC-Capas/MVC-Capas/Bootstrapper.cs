@@ -1,6 +1,10 @@
 using System.Web.Mvc;
 using Microsoft.Practices.Unity;
 using Unity.Mvc4;
+using MVC_Capas.Services.Interface;
+using MVC_Capas.Services.Implementation;
+using MVC_Capas.DAOs.Interface;
+using MVC_Capas.DAOs.Implementation;
 
 namespace MVC_Capas
 {
@@ -19,11 +23,18 @@ namespace MVC_Capas
     {
       var container = new UnityContainer();
 
-      // register all your components with the container here
-      // it is NOT necessary to register your controllers
+    // register all your components with the container here
+    // it is NOT necessary to register your controllers
 
-      // e.g. container.RegisterType<ITestService, TestService>();    
-      RegisterTypes(container);
+    // e.g. container.RegisterType<ITestService, TestService>();    
+
+    /*Services*/
+    container.RegisterType<IClientsService, ClientsServiceImpl>();
+
+    /*DAOs*/   
+    container.RegisterType<IPersonaDAO, PersonaDAOImpl>();
+
+    RegisterTypes(container);
 
       return container;
     }
