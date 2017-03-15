@@ -29,10 +29,12 @@ namespace MVC_Capas
     // e.g. container.RegisterType<ITestService, TestService>();    
 
     /*Services*/
-    container.RegisterType<IClientsService, ClientsServiceImpl>();
+    container.RegisterType<IClientesService, ClientesServiceImpl>();
+    container.RegisterType<ICuentasService, CuentasServiceImpl>();
 
-    /*DAOs*/   
+    /*DAOs*/
     container.RegisterType<IPersonaDAO, PersonaDAOImpl>();
+    container.RegisterType<ICuentaDAO, CuentaDAOImpl>();
 
     RegisterTypes(container);
 

@@ -1,13 +1,13 @@
-﻿using MVC_Capas.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MVC_Capas.Models;
 
-namespace MVC_Capas.DAOs.Interface
+namespace MVC_Capas.Services.Interface
 {
-    public interface IPersonaDAO
+    public interface IClientesService
     {
         List<Persona> obtenerClientes();
         List<Persona> obtenerClientesPorFiltro(List<Persona> clientes, string filtro);
@@ -16,5 +16,6 @@ namespace MVC_Capas.DAOs.Interface
         List<Persona> ordenarPorApellido1(List<Persona> clientes);
         List<Persona> ordenarPorApellido2(List<Persona> clientes);
         void insertarCliente(Persona nueva);
+
     }
 }

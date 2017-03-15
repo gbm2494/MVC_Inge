@@ -85,7 +85,13 @@
                             }
                         </td>
                         <td>
-                            <a href="@Url.Action("consultarCliente", new { id = item.cedula })">Consultar
+                            <a href="@Url.Action("consultarCliente", new { id = item.cedula})" class="btn btn-primary">Consultar
+                            </a>
+                            <a href="@Url.Action("modificarCliente", new { id = item.cedula})" class="btn btn-warning">
+                                Modificar
+                            </a>
+                            <a href="@Url.Action("eliminarCliente", new { id = item.cedula})" class="btn btn-danger">
+                                Eliminar
                             </a>
                         </td>
                     </tr>

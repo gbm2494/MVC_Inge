@@ -238,7 +238,9 @@
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DAOs\Implementation\CuentaDAOImpl.cs" />
     <Compile Include="DAOs\Implementation\PersonaDAOImpl.cs" />
+    <Compile Include="DAOs\Interface\ICuentaDAO.cs" />
     <Compile Include="DAOs\Interface\IPersonaDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -264,12 +266,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Modelo.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModeloIntermedio.cs" />
     <Compile Include="Models\Persona.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Implementation\ClientsServiceImpl.cs" />
-    <Compile Include="Services\Interface\IClientsService.cs" />
+    <Compile Include="Services\Implementation\CuentasServiceImpl.cs" />
+    <Compile Include="Services\Implementation\ClientesServiceImpl.cs" />
+    <Compile Include="Services\Interface\ICuentasService.cs" />
+    <Compile Include="Services\Interface\IClientesService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

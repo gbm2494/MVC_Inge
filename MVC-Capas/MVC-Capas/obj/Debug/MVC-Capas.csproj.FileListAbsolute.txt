@@ -197,3 +197,4 @@ C:\Users\Gaudy\Desktop\MVC_Inge\MVC-Capas\MVC-Capas\bin\Microsoft.Owin.Security.
 C:\Users\Gaudy\Desktop\MVC_Inge\MVC-Capas\MVC-Capas\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Gaudy\Desktop\MVC_Inge\MVC-Capas\MVC-Capas\obj\Debug\MVC-Capas.dll
 C:\Users\Gaudy\Desktop\MVC_Inge\MVC-Capas\MVC-Capas\obj\Debug\MVC-Capas.pdb
+C:\Users\Gaudy\Desktop\MVC_Inge\MVC-Capas\MVC-Capas\obj\Debug\MVC-Capas.csprojResolveAssemblyReference.cache

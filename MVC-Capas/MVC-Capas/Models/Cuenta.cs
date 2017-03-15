@@ -11,12 +11,22 @@ namespace MVC_Capas.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Cuenta
     {
+        [StringLength(20)]
+        [Required(ErrorMessage = "El nombre es un campo requerido.")]
+        [Display(Name = "Número:")]
+        [RegularExpression(@"^[0-9]+$", ErrorMessage = "El número de cuenta solo puede estar compuesto por números")]
         public string numero { get; set; }
         public string cedula { get; set; }
+        [StringLength(20)]
+        [Required(ErrorMessage = "El tipo es un campo requerido.")]
+        [Display(Name = "Tipo:")]
         public string tipo { get; set; }
+        [StringLength(10)]
+        [Display(Name = "Saldo:")]
+        [RegularExpression(@"^[0-9]+$", ErrorMessage = "El saldo solo puede estar compuesto por números")]
         public Nullable<int> saldo { get; set; }
         public Nullable<bool> cuentaDefault { get; set; }
     

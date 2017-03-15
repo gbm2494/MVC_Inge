@@ -11,11 +11,12 @@ namespace MVC_Capas.Controllers
 {
     public class ClientesController : Controller
     {
-        Entities db = new Entities();
-        IClientsService clientService;
+        IClientesService clientesService;
+        ICuentasService cuentasService;
 
-        public ClientesController(IClientsService clientServ){
-            clientService = clientServ;
+        public ClientesController(IClientesService clientServ, ICuentasService accountServ){
+            clientesService = clientServ;
+            cuentasService = accountServ;
         }
 
         // GET: Clientes
@@ -43,34 +44,70 @@ namespace MVC_Capas.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var students = clientService.selectClients();
+            var students = clientesService.obtenerClientes();
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                students = clientService.selectClientsByFilter(students, searchString);
+                students = clientesService.obtenerClientesPorFiltro(students, searchString);
             }
 
             switch (sortOrder)
             {
                 case "cedula":
-                    students = clientService.orderById(students);
+                    students = clientesService.ordenarPorCedula(students);
                     break;
                 case "nombre":
-                    students = clientService.orderByName(students);
+                    students = clientesService.ordenarPorNombre(students);
                     break;
                 case "apellido1":
-                    students = clientService.orderByLastName1(students);
+                    students = clientesService.ordenarPorApellido1(students);
                     break;
                 case "apellido2":
-                    students = clientService.orderByLastName2(students);
+                    students = clientesService.ordenarPorApellido2(students);
                     break;
                 default:
-                    students = clientService.orderByName(students);
+                    students = clientesService.ordenarPorNombre(students);
                     break;
             }
-            int pageSize = 3;
+            int pageSize = 2;
             int pageNumber = (page ?? 1);
             return View(students.ToPagedList(pageNumber, pageSize));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult nuevoCliente(ModeloIntermedio modelo)
+        {
+            if (ModelState.IsValid)
+            {
+                clientesService.insertarCliente(modelo.modeloPersona);
+                
+                if (modelo.modeloCuenta1.numero != null)
+                {
+                    modelo.modeloCuenta1.cedula = modelo.modeloPersona.cedula;
+                    cuentasService.insertarCuenta(modelo.modeloCuenta1);
+                }
+
+                if (modelo.modeloCuenta2.numero != null)
+                {
+                    modelo.modeloCuenta2.cedula = modelo.modeloPersona.cedula;
+                    cuentasService.insertarCuenta(modelo.modeloCuenta2);
+                }
+
+                if (modelo.modeloCuenta3.numero != null)
+                {
+                    modelo.modeloCuenta3.cedula = modelo.modeloPersona.cedula;
+                    cuentasService.insertarCuenta(modelo.modeloCuenta3);
+                }
+
+                
+                return RedirectToAction("listaClientes");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Debe completar toda la información necesaria.");
+                return View(modelo);
+            }
         }
     }
 }

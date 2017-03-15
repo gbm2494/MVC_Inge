@@ -12,37 +12,43 @@ namespace MVC_Capas.DAOs.Implementation
     {
         Entities db = new Entities();
 
-        List<Persona> IPersonaDAO.orderById(List<Persona> clients)
+        void IPersonaDAO.insertarCliente(Persona persona)
         {
-            return clients.OrderBy(s => s.cedula).ToList();
+            db.Persona.Add(persona);
+            db.SaveChanges();
         }
 
-        List<Persona> IPersonaDAO.orderByLastName1(List<Persona> clients)
+        List<Persona> IPersonaDAO.ordenarPorCedula(List<Persona> clientes)
         {
-            return clients.OrderBy(s => s.apellido1).ToList();
+            return clientes.OrderBy(s => s.cedula).ToList();
         }
 
-        List<Persona> IPersonaDAO.orderByLastName2(List<Persona> clients)
+        List<Persona> IPersonaDAO.ordenarPorApellido1(List<Persona> clientes)
         {
-            return clients.OrderBy(s => s.apellido2).ToList();
+            return clientes.OrderBy(s => s.apellido1).ToList();
         }
 
-        List<Persona> IPersonaDAO.orderByName(List<Persona> clients)
+        List<Persona> IPersonaDAO.ordenarPorApellido2(List<Persona> clientes)
         {
-            return clients.OrderBy(s => s.nombre).ToList();
+            return clientes.OrderBy(s => s.apellido2).ToList();
         }
 
-        List<Persona> IPersonaDAO.selectClients()
+        List<Persona> IPersonaDAO.ordenarPorNombre(List<Persona> clientes)
         {
-            var clients = from s in db.Persona
+            return clientes.OrderBy(s => s.nombre).ToList();
+        }
+
+        List<Persona> IPersonaDAO.obtenerClientes()
+        {
+            var clientes = from s in db.Persona
                            select s;
-            return clients.ToList();
+            return clientes.ToList();
         }
 
-        List<Persona> IPersonaDAO.selectClientsByFilter(List<Persona> clients, string filter)
+        List<Persona> IPersonaDAO.obtenerClientesPorFiltro(List<Persona> clientes, string filtro)
         {
-            return clients.Where(s => s.apellido1.Contains(filter)
-                                       || s.nombre.Contains(filter) || s.apellido2.Contains(filter)).ToList();
+            return clientes.Where(s => s.apellido1.Contains(filtro)
+                                       || s.nombre.Contains(filtro) || s.apellido2.Contains(filtro)).ToList();
         }
     }
 }
